@@ -1,5 +1,6 @@
 package com.google.gdsc.deu.summerhack.service
 
+import com.google.gdsc.deu.summerhack.dto.user.EmailVerifyRequestDto
 import com.google.gdsc.deu.summerhack.dto.user.LoginRequestDto
 import com.google.gdsc.deu.summerhack.dto.user.UserRegistrationRequestDto
 import com.google.gdsc.deu.summerhack.entity.user.User
@@ -9,7 +10,7 @@ import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
 @Service
-@Transactional
+@Transactional(rollbackFor = [Exception::class])
 class UserService(
     private val userRepository: UserRepository,
 ) {
@@ -64,5 +65,16 @@ class UserService(
         check(user.authCode == null) { "이메일 인증이 완료되지 않았습니다." }
 
         return user
+    }
+
+    fun verity(request: EmailVerifyRequestDto): Boolean {
+        val user = userRepository.findByEmail(request.email) ?: error("인증에 실패했습니다.")
+        val authResult = user.authCode == request.vertCode
+
+        if (authResult) {
+            user.resolveAuth()
+        }
+
+        return authResult
     }
 }

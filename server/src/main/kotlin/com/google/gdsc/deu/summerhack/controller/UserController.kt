@@ -1,9 +1,6 @@
 package com.google.gdsc.deu.summerhack.controller
 
-import com.google.gdsc.deu.summerhack.dto.user.LoginRequestDto
-import com.google.gdsc.deu.summerhack.dto.user.LoginResponseDto
-import com.google.gdsc.deu.summerhack.dto.user.UserRegistrationRequestDto
-import com.google.gdsc.deu.summerhack.dto.user.UserRegistrationResponseDto
+import com.google.gdsc.deu.summerhack.dto.user.*
 import com.google.gdsc.deu.summerhack.service.JwtService
 import com.google.gdsc.deu.summerhack.service.MailService
 import com.google.gdsc.deu.summerhack.service.TemplateService
@@ -65,5 +62,15 @@ class UserController(
             token = token
         )
     }
+
+    @PostMapping("/email-vert")
+    fun emailVerify(@RequestBody request: EmailVerifyRequestDto): EmailVerifyResponseDto {
+        val verifyResult = userService.verity(request)
+
+        return EmailVerifyResponseDto(
+            success = verifyResult
+        )
+    }
+
 
 }

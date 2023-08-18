@@ -24,4 +24,7 @@ class User(
     @Enumerated(EnumType.STRING)
     val userType: UserType,
 ) {
+    fun resolveAuth() {
+        authCode = null
+    }
 }
