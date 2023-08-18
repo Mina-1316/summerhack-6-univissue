@@ -29,8 +29,8 @@ class UserController {
 
     /**
      * 로그인을 위한 API
-     * @param request - 로그인하고자 하는 유저 정보
-     * @Returns: 로그인 작업 결과 - 실패 시 에러 메시지를 반환
+     * @param request 로그인하고자 하는 유저 정보
+     * @return 로그인 작업 결과 - 실패 시 에러 메시지를 반환
      */
     @PostMapping()
     fun login(@RequestBody request: LoginRequestDto): LoginResponseDto {
