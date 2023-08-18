@@ -1,8 +1,12 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
+	// Spring Boot
 	id("org.springframework.boot") version "3.1.2"
 	id("io.spring.dependency-management") version "1.1.2"
+	// KAPT(Kotlin Annotation Processor)
+	id("org.jetbrains.kotlin.kapt") version "1.8.22"
+	// Kotlin
 	kotlin("jvm") version "1.8.22"
 	kotlin("plugin.spring") version "1.8.22"
 	kotlin("plugin.jpa") version "1.8.22"
@@ -32,6 +36,14 @@ dependencies {
 
 	// Datasource(MySQL)
 	implementation("mysql:mysql-connector-java:8.0.33")
+
+	// SpringDoc
+	implementation("org.springdoc:springdoc-openapi-ui:1.6.15")
+	implementation("org.springdoc:springdoc-openapi-webmvc-core:1.6.15")
+	implementation("org.springdoc:springdoc-openapi-kotlin:1.6.15")
+	annotationProcessor("org.springdoc:springdoc-openapi-javadoc:1.6.15")
+	kapt("org.springdoc:springdoc-openapi-javadoc:1.6.15")
+
 }
 
 // == Test Dependencies ==
