@@ -39,6 +39,7 @@ dependencies {
 
 	// SpringDoc
 	implementation("org.springdoc:springdoc-openapi-ui:1.6.15")
+	implementation("org.springdoc:springdoc-openapi-webmvc-core:1.6.15")
 	implementation("org.springdoc:springdoc-openapi-kotlin:1.6.15")
 	annotationProcessor("org.springdoc:springdoc-openapi-javadoc:1.6.15")
 	kapt("org.springdoc:springdoc-openapi-javadoc:1.6.15")
