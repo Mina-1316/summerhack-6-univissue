@@ -4,6 +4,7 @@ import com.google.gdsc.deu.summerhack.dto.user.LoginRequestDto
 import com.google.gdsc.deu.summerhack.dto.user.LoginResponseDto
 import com.google.gdsc.deu.summerhack.dto.user.UserRegistrationRequestDto
 import com.google.gdsc.deu.summerhack.dto.user.UserRegistrationResponseDto
+import com.google.gdsc.deu.summerhack.service.UserService
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
@@ -11,7 +12,9 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping("/api/v1/user")
-class UserController {
+class UserController(
+    private val userService: UserService,
+) {
 
     /**
      * 유저 정보를 생성(회원 가입)하는 API.
@@ -21,9 +24,10 @@ class UserController {
      */
     @PostMapping()
     fun createUser(@RequestBody request: UserRegistrationRequestDto): UserRegistrationResponseDto {
+        userService.createUser(request)
 
         return UserRegistrationResponseDto(
-            message = "success"
+            message = "SUCCESS"
         )
     }
 
@@ -34,6 +38,7 @@ class UserController {
      */
     @PostMapping("/login")
     fun login(@RequestBody request: LoginRequestDto): LoginResponseDto {
+        userService.login(request)
 
         return LoginResponseDto(
             token = "login success"
