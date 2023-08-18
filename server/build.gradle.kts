@@ -45,6 +45,11 @@ dependencies {
     annotationProcessor("org.springdoc:springdoc-openapi-javadoc:1.6.15")
     annotationProcessor("com.github.therapi:therapi-runtime-javadoc-scribe:0.15.0")
 
+    // Spring Mail
+    implementation("org.springframework.boot:spring-boot-starter-mail")
+
+    // Mustache(HTML Template engine for E-mail generation)
+    implementation("com.github.spullara.mustache.java:compiler:0.9.10")
 }
 
 // == Test Dependencies ==

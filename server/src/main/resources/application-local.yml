@@ -6,3 +6,18 @@ spring:
 
   jpa:
     database-platform: org.hibernate.dialect.MySQLDialect
+
+  mail:
+    host: smtp.email.ap-seoul-1.oci.oraclecloud.com
+    username: ocid1.user.oc1..aaaaaaaautyclriajcoi3mzvq4gwnuhlucggayyph2bahk3vuj6kfzjzkvza@ocid1.tenancy.oc1..aaaaaaaasrbjiw34g76egwthrhferqex5iwfwsqkvblsm2djerscvle25dyq.we.com
+    password: pf!Xfe6uM8d9wl1Kf]WY
+    from: noreply@qwertycvb.com
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+application:
+  base-url: http://localhost:8080
