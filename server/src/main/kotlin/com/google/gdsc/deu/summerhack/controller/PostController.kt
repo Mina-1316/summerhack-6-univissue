@@ -23,16 +23,16 @@ class PostController {
      * @param request 불러오고자 하는 게시글 정보
      * @return 게시글 불러오기 결과 - 실패 시 에러 메시지를 반환
      */
-    @GetMapping()
-    fun retrievePost(): PostRetrieveResponseDto {
+    @GetMapping("/{postId}")
+    fun retrievePost(@PathVariable postId: String): PostRetrieveResponseDto {
         return PostRetrieveResponseDto(
-                title = "title",
-                content = "content",
-                author = PostRetrieveResponseDto.AuthorInfo(
-                        email = "email",
-                        nickname = "nickname",
-                ),
-                recommendCnt = 0
+            title = "title",
+            content = "content",
+            author = PostRetrieveResponseDto.AuthorInfo(
+                email = "email",
+                nickname = "nickname",
+            ),
+            recommendCnt = 0
         )
     }
 
@@ -41,10 +41,10 @@ class PostController {
      * @param request 전체 게시글 리스트
      * @return 게시글 리스트 불러오기 결과 - 실패 시 에러 메시지를 반환
      */
-    @GetMapping
+    @GetMapping()
     fun retrievePostList(): PostListRetrieveResponseDto {
         return PostListRetrieveResponseDto(
-                posts = listOf(),
+            posts = listOf(),
         )
     }
 }

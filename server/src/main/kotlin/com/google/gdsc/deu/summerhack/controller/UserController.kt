@@ -23,7 +23,7 @@ class UserController {
     fun createUser(@RequestBody request: UserRegistrationRequestDto): UserRegistrationResponseDto {
 
         return UserRegistrationResponseDto(
-                message = "success"
+            message = "success"
         )
     }
 
@@ -32,11 +32,11 @@ class UserController {
      * @param request 로그인하고자 하는 유저 정보
      * @return 로그인 작업 결과 - 실패 시 에러 메시지를 반환
      */
-    @PostMapping()
+    @PostMapping("/login")
     fun login(@RequestBody request: LoginRequestDto): LoginResponseDto {
 
         return LoginResponseDto(
-                token = "login success"
+            token = "login success"
         )
     }
 
