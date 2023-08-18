@@ -4,7 +4,7 @@ data class UserRegistrationRequestDto(
     /**
      * 사용자 이름
      */
-    val username: String,
+    val nickname: String,
     /**
      * 이메일. office.deu.ac.kr 혹은 deu.ac.kr 이메일만 수락 가능합니다.
      */

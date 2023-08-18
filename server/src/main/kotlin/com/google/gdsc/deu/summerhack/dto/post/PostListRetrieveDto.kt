@@ -46,6 +46,6 @@ data class PostListRetrieveResponseDto(
         /**
          * 작성자 이름
          */
-        val userName: String,
+        val nickname: String,
     )
 }
