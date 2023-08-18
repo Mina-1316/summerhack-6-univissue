@@ -19,7 +19,7 @@ class UserService(
      *
      * @param data 생성하고자 하는 유저 정보
      */
-    fun createUser(data: UserRegistrationRequestDto) {
+    fun createUser(data: UserRegistrationRequestDto): User {
         // Email이 office.deu.ac.kr인 경우 학생, deu.ac.kr인 경우 교직원
         val userType = when (data.email.split("@")[1]) {
             "office.deu.ac.kr" -> UserType.USER
@@ -28,16 +28,20 @@ class UserService(
         }
 
         // 이메일/사용자명 중복 체크
-        check(userRepository.findByEmail(data.email) != null) { "이메일은 중복될 수 없습니다." }
-        check(userRepository.findByUserName(data.nickname) != null) { "사용자명은 중복될 수 없습니다." }
+        check(userRepository.findByEmail(data.email) == null) { "이메일은 중복될 수 없습니다." }
+        check(userRepository.findByUserName(data.nickname) == null) { "사용자명은 중복될 수 없습니다." }
+
+        // 랜덤한 6자리 숫자를 생성
+        val authCode = (100000..999999).random()
 
         // 사용자 생성
-        userRepository.save(
+        return userRepository.save(
             User(
                 email = data.email,
                 userName = data.nickname,
                 password = data.password,
                 userType = userType,
+                authCode = authCode.toString(),
             )
         )
     }

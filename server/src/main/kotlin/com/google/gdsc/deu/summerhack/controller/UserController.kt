@@ -5,6 +5,8 @@ import com.google.gdsc.deu.summerhack.dto.user.LoginResponseDto
 import com.google.gdsc.deu.summerhack.dto.user.UserRegistrationRequestDto
 import com.google.gdsc.deu.summerhack.dto.user.UserRegistrationResponseDto
 import com.google.gdsc.deu.summerhack.service.JwtService
+import com.google.gdsc.deu.summerhack.service.MailService
+import com.google.gdsc.deu.summerhack.service.TemplateService
 import com.google.gdsc.deu.summerhack.service.UserService
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
@@ -15,6 +17,8 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("/api/v1/user")
 class UserController(
     private val userService: UserService,
+    private val mailService: MailService,
+    private val templateService: TemplateService,
     private val jwtService: JwtService,
 ) {
 
@@ -26,7 +30,19 @@ class UserController(
      */
     @PostMapping()
     fun createUser(@RequestBody request: UserRegistrationRequestDto): UserRegistrationResponseDto {
-        userService.createUser(request)
+        val user = userService.createUser(request)
+
+        val emailString = templateService.applyTemplate(
+            "mail/registration.mustache", mapOf(
+                "authCode" to user.authCode
+            )
+        )
+
+        mailService.sendMail(
+            subject = "DEU Summer Hack 2023 회원가입 인증 메일입니다.",
+            to = request.email,
+            text = emailString
+        )
 
         return UserRegistrationResponseDto(
             message = "SUCCESS"
