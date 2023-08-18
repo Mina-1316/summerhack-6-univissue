@@ -9,4 +9,5 @@ data class CreateCommentRequestDto(
          */
         val comment: String,
 )
+
 // 댓글 생성 api는 Response가 없음
