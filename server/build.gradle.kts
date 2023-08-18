@@ -19,12 +19,23 @@ repositories {
 	mavenCentral()
 }
 
+// == Dependencies ==
 dependencies {
+	// Spring boot
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
-	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
+
+	// Kotlin
+	implementation("org.jetbrains.kotlin:kotlin-reflect")
+
+	// Datasource(MySQL)
+	implementation("mysql:mysql-connector-java:8.0.33")
+}
+
+// == Test Dependencies ==
+dependencies {
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 
