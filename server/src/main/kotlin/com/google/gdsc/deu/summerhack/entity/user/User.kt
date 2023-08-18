@@ -1,5 +1,6 @@
 package com.google.gdsc.deu.summerhack.entity.user
 
+import com.google.gdsc.deu.summerhack.enums.UserType
 import jakarta.persistence.*
 
 @Entity
@@ -18,5 +19,9 @@ class User(
 
     @Column(nullable = true)
     var authCode: String? = null,
+
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    val userType: UserType,
 ) {
 }
