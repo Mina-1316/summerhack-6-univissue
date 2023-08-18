@@ -1,5 +1,7 @@
 package com.google.gdsc.deu.summerhack.controller
 
+import com.google.gdsc.deu.summerhack.dto.user.LoginRequestDto
+import com.google.gdsc.deu.summerhack.dto.user.LoginResponseDto
 import com.google.gdsc.deu.summerhack.dto.user.UserRegistrationRequestDto
 import com.google.gdsc.deu.summerhack.dto.user.UserRegistrationResponseDto
 import org.springframework.web.bind.annotation.PostMapping
@@ -21,7 +23,15 @@ class UserController {
     fun createUser(@RequestBody request: UserRegistrationRequestDto): UserRegistrationResponseDto {
 
         return UserRegistrationResponseDto(
-            message = "success"
+                message = "success"
+        )
+    }
+
+    @PostMapping()
+    fun login(@RequestBody request: LoginRequestDto): LoginResponseDto {
+
+        return LoginResponseDto(
+                token = "login success"
         )
     }
 
