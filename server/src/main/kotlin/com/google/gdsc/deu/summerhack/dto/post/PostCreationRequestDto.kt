@@ -3,7 +3,7 @@ package com.google.gdsc.deu.summerhack.dto.post
 /**
  * 게시글 작성을 위한 데이터 클래스
  */
-data class PostCreationDto(
+data class PostCreationRequestDto(
     /**
      * 게시글 제목
      */
