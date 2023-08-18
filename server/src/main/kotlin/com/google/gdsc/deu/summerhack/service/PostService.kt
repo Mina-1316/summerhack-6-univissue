@@ -21,4 +21,8 @@ class PostService(
 
         return postRepository.save(postInfo)
     }
+
+    fun retrievePost(postIdxData: Long): Post {
+        return postRepository.findById(postIdxData).orElseThrow { IllegalStateException("존재하지 않는 글입니다.") }
+    }
 }
