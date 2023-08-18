@@ -50,6 +50,10 @@ dependencies {
 
     // Mustache(HTML Template engine for E-mail generation)
     implementation("com.github.spullara.mustache.java:compiler:0.9.10")
+
+    // JWT
+    implementation("io.jsonwebtoken:jjwt:0.9.1")
+    implementation("javax.xml.bind:jaxb-api:2.3.1")
 }
 
 // == Test Dependencies ==

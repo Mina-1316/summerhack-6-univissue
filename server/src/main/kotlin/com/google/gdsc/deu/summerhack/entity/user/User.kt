@@ -3,7 +3,7 @@ package com.google.gdsc.deu.summerhack.entity.user
 import com.google.gdsc.deu.summerhack.enums.UserType
 import jakarta.persistence.*
 
-@Entity
+@Entity(name = "user")
 class User(
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long = 0,

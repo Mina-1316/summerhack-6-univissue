@@ -4,6 +4,7 @@ import com.google.gdsc.deu.summerhack.dto.user.LoginRequestDto
 import com.google.gdsc.deu.summerhack.dto.user.LoginResponseDto
 import com.google.gdsc.deu.summerhack.dto.user.UserRegistrationRequestDto
 import com.google.gdsc.deu.summerhack.dto.user.UserRegistrationResponseDto
+import com.google.gdsc.deu.summerhack.service.JwtService
 import com.google.gdsc.deu.summerhack.service.UserService
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("/api/v1/user")
 class UserController(
     private val userService: UserService,
+    private val jwtService: JwtService,
 ) {
 
     /**
@@ -38,10 +40,13 @@ class UserController(
      */
     @PostMapping("/login")
     fun login(@RequestBody request: LoginRequestDto): LoginResponseDto {
-        userService.login(request)
+        val user = userService.login(request)
+
+        // JWT 토큰 생성
+        val token = jwtService.generateToken(user)
 
         return LoginResponseDto(
-            token = "login success"
+            token = token
         )
     }
 

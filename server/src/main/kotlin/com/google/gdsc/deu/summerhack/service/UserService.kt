@@ -56,6 +56,9 @@ class UserService(
         // 비밀번호 일치 여부 확인
         check(user.password == data.password) { "로그인에 실패했습니다." }
 
+        // 이메일 인증 여부 확인
+        check(user.authCode == null) { "이메일 인증이 완료되지 않았습니다." }
+
         return user
     }
 }

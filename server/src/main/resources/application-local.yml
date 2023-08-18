@@ -6,6 +6,8 @@ spring:
 
   jpa:
     database-platform: org.hibernate.dialect.MySQLDialect
+    hibernate:
+      ddl-auto: update
 
   mail:
     host: smtp.email.ap-seoul-1.oci.oraclecloud.com
@@ -21,3 +23,6 @@ spring:
 
 application:
   base-url: http://localhost:8080
+  jwt:
+    secret: wadoyouknowjwtitiscommonsolutionforauthenticationandauthorization
+    expiration: 86400000
