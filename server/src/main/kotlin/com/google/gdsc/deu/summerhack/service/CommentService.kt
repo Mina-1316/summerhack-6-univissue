@@ -25,4 +25,8 @@ class CommentService(
                 commentInfo
         )
     }
+
+    fun retrieveComment(postIdxData: Long, commentData: Comment): List<Comment> {
+        return commentRepository.findByPostId(postIdxData)
+    }
 }
